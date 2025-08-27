@@ -6,7 +6,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { useLayout } from '@/contexts/LayoutContext';
 
 const TerminalCore: React.FC = () => {
-  const { setTheme, availableThemes } = useTheme();
+  const { theme, setTheme, availableThemes } = useTheme(); // Destructure 'theme' here
   const { layout, setLayout, availableLayouts } = useLayout();
 
   const [history, setHistory] = useState<TerminalLine[]>([]);
@@ -84,7 +84,7 @@ const TerminalCore: React.FC = () => {
                 <div>Status: ${config.whoami.status}</div>
                 <hr class="my-2 border-[var(--prompt-color)]">
                 <div><strong>Version:</strong> 1.0.0</div>
-                <div><strong>Theme:</strong> ${config.themes[useTheme().theme].replace('theme-', '') || 'default'}</div>
+                <div><strong>Theme:</strong> ${theme.replace('theme-', '') || 'default'}</div>
                 <div><strong>Host:</strong> Singularity OS</div>
                 <div><strong>Frontend:</strong> React/TypeScript</div>
                 <div><strong>Backend:</strong> Tailwind CSS</div>
@@ -145,7 +145,7 @@ const TerminalCore: React.FC = () => {
       }
       addLineToHistory(output, isHtml);
     },
-    [promptString, availableThemes, availableLayouts, setTheme, setLayout, sessionHistory, addLineToHistory, uptime]
+    [promptString, availableThemes, availableLayouts, setTheme, setLayout, sessionHistory, addLineToHistory, uptime, theme] // Added 'theme' to dependencies
   );
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
