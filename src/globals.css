@@ -137,6 +137,34 @@
     @apply w-full md:w-3/5 border-[var(--container-border)] rounded-lg bg-[var(--container-bg)] overflow-y-auto flex flex-col shadow-[0_0_5px_var(--shadow-color)];
   }
 
+  /* Logstream Layout */
+  .layout-logstream #output-wrapper {
+    @apply flex flex-col h-full;
+  }
+  .layout-logstream #input-line {
+    @apply hidden;
+  }
+  #logstream-container {
+    @apply flex flex-col w-full h-full p-4 pointer-events-auto;
+  }
+  #logstream-output {
+    @apply flex-grow overflow-y-auto border-[var(--container-border)] rounded-lg bg-[var(--container-bg)] p-4 mb-4 shadow-[0_0_5px_var(--shadow-color)];
+  }
+
+  /* Grid Layout */
+  .layout-grid #output-wrapper {
+    @apply flex flex-col h-full;
+  }
+  .layout-grid #input-line {
+    @apply hidden;
+  }
+  #grid-container {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4 h-full overflow-y-auto pointer-events-auto;
+  }
+  .grid-tile {
+    @apply block bg-[var(--container-bg)] border-[var(--container-border)] p-6 rounded-lg text-center transition-transform duration-200 ease-in-out hover:scale-105 shadow-[0_0_5px_var(--shadow-color)];
+  }
+
 
   /* General terminal styling */
   .terminal-line {

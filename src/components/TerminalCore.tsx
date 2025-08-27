@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import TerminalOutput from './TerminalOutput';
 import TerminalInput from './TerminalInput';
-import MultiPanelLayout from './layouts/MultiPanelLayout'; // Import the new layout component
+import MultiPanelLayout from './layouts/MultiPanelLayout';
+import LogstreamLayout from './layouts/LogstreamLayout'; // Import LogstreamLayout
+import GridLayout from './layouts/GridLayout'; // Import GridLayout
 import { config, ThemeKey, LayoutKey, TerminalLine } from '@/lib/config';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useLayout } from '@/contexts/LayoutContext';
@@ -204,6 +206,12 @@ const TerminalCore: React.FC = () => {
             onKeyDown={handleKeyDown}
             addLineToHistory={addLineToHistory}
           />
+        )}
+        {layout === 'logstream' && (
+          <LogstreamLayout addLineToHistory={addLineToHistory} />
+        )}
+        {layout === 'grid' && (
+          <GridLayout addLineToHistory={addLineToHistory} />
         )}
         {(layout === 'terminal' || layout === 'minimal' || layout === 'default') && terminalContent}
       </div>
