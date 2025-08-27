@@ -120,6 +120,24 @@
     @apply h-[90vh] max-h-[800px] bg-[var(--container-bg)] backdrop-blur-md border-[var(--container-border)] rounded-lg animate-fade;
   }
 
+  /* Multipanel Layout */
+  .layout-multipanel #output-wrapper {
+    @apply flex flex-col h-full; /* Ensure output-wrapper takes full height */
+  }
+  .layout-multipanel #input-line {
+    @apply hidden; /* Hide the main input line as it's handled within MultiPanelLayout */
+  }
+  #multipanel-container {
+    @apply flex flex-col md:flex-row w-full h-full p-4 gap-4 pointer-events-auto;
+  }
+  #multipanel-static {
+    @apply w-full md:w-2/5 border-[var(--container-border)] p-4 rounded-lg bg-[var(--container-bg)] overflow-y-auto flex-shrink-0 shadow-[0_0_5px_var(--shadow-color)];
+  }
+  #multipanel-terminal {
+    @apply w-full md:w-3/5 border-[var(--container-border)] rounded-lg bg-[var(--container-bg)] overflow-y-auto flex flex-col shadow-[0_0_5px_var(--shadow-color)];
+  }
+
+
   /* General terminal styling */
   .terminal-line {
     @apply mb-2 leading-normal;

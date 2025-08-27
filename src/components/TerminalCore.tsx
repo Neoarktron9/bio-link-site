@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import TerminalOutput from './TerminalOutput';
 import TerminalInput from './TerminalInput';
+import MultiPanelLayout from './layouts/MultiPanelLayout'; // Import the new layout component
 import { config, ThemeKey, LayoutKey, TerminalLine } from '@/lib/config';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useLayout } from '@/contexts/LayoutContext';
 
 const TerminalCore: React.FC = () => {
-  const { theme, setTheme, availableThemes } = useTheme(); // Destructure 'theme' here
+  const { theme, setTheme, availableThemes } = useTheme();
   const { layout, setLayout, availableLayouts } = useLayout();
 
   const [history, setHistory] = useState<TerminalLine[]>([]);
@@ -145,7 +146,7 @@ const TerminalCore: React.FC = () => {
       }
       addLineToHistory(output, isHtml);
     },
-    [promptString, availableThemes, availableLayouts, setTheme, setLayout, sessionHistory, addLineToHistory, uptime, theme] // Added 'theme' to dependencies
+    [promptString, availableThemes, availableLayouts, setTheme, setLayout, sessionHistory, addLineToHistory, uptime, theme]
   );
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -189,15 +190,25 @@ const TerminalCore: React.FC = () => {
   return (
     <div id="app" className="flex flex-col h-full text-[var(--output-color)] shadow-[0_0_5px_var(--shadow-color)]">
       <div id="output-wrapper" className="flex-grow relative flex flex-col">
-        {layout === 'centered' ? (
+        {layout === 'centered' && (
           <div id="terminal-output" className="h-[90vh] max-h-[800px] bg-[var(--container-bg)] backdrop-blur-md border-[var(--container-border)] rounded-lg animate-fade p-4 overflow-y-auto">
             <TerminalOutput history={history} />
           </div>
-        ) : (
-          terminalContent
         )}
+        {layout === 'multipanel' && (
+          <MultiPanelLayout
+            history={history}
+            command={command}
+            promptString={promptString}
+            onChange={(e) => setCommand(e.target.value)}
+            onKeyDown={handleKeyDown}
+            addLineToHistory={addLineToHistory}
+          />
+        )}
+        {(layout === 'terminal' || layout === 'minimal' || layout === 'default') && terminalContent}
       </div>
-      {layout !== 'centered' && (
+      {/* The input line is only rendered outside the output-wrapper for 'terminal' and 'minimal' layouts */}
+      {(layout === 'terminal' || layout === 'minimal' || layout === 'default') && (
         <div id="input-line" className="flex items-center flex-shrink-0 p-4">
           <TerminalInput
             prompt={promptString}
