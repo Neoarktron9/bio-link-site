@@ -3,99 +3,152 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-fira-code overflow-hidden transition-all duration-300 ease-in-out;
+  }
+
+  /* Custom theme classes will be applied directly to body via ThemeContext */
+  .theme-matrix {
+    @apply bg-matrix-bg text-matrix-output;
+    --prompt-color: theme('colors.matrix-prompt');
+    --input-color: theme('colors.matrix-input');
+    --header-color: theme('colors.matrix-header');
+    --link-color: theme('colors.matrix-link');
+    --link-hover-color: theme('colors.matrix-link-hover');
+    --shadow-color: theme('colors.matrix-shadow');
+    --container-bg: theme('colors.matrix-container-bg');
+    --container-border: 1px solid theme('colors.matrix-container-border');
+    --window-header-bg: theme('colors.matrix-window-header-bg');
+    --window-header-text: theme('colors.matrix-window-header-text');
+  }
+
+  .theme-dracula {
+    @apply bg-dracula-bg text-dracula-output;
+    --prompt-color: theme('colors.dracula-prompt');
+    --input-color: theme('colors.dracula-input');
+    --header-color: theme('colors.dracula-header');
+    --link-color: theme('colors.dracula-link');
+    --link-hover-color: theme('colors.dracula-link-hover');
+    --shadow-color: theme('colors.dracula-shadow');
+    --container-bg: theme('colors.dracula-container-bg');
+    --container-border: 1px solid theme('colors.dracula-container-border');
+    --window-header-bg: theme('colors.dracula-window-header-bg');
+    --window-header-text: theme('colors.dracula-window-header-text');
+  }
+
+  .theme-nord {
+    @apply bg-nord-bg text-nord-output;
+    --prompt-color: theme('colors.nord-prompt');
+    --input-color: theme('colors.nord-input');
+    --header-color: theme('colors.nord-header');
+    --link-color: theme('colors.nord-link');
+    --link-hover-color: theme('colors.nord-link-hover');
+    --shadow-color: theme('colors.nord-shadow');
+    --container-bg: theme('colors.nord-container-bg');
+    --container-border: 1px solid theme('colors.nord-container-border');
+    --window-header-bg: theme('colors.nord-window-header-bg');
+    --window-header-text: theme('colors.nord-window-header-text');
+  }
+
+  .theme-solarized-light {
+    @apply bg-solarized-light-bg text-solarized-light-output;
+    --prompt-color: theme('colors.solarized-light-prompt');
+    --input-color: theme('colors.solarized-light-input');
+    --header-color: theme('colors.solarized-light-header');
+    --link-color: theme('colors.solarized-light-link');
+    --link-hover-color: theme('colors.solarized-light-link-hover');
+    --shadow-color: theme('colors.solarized-light-shadow');
+    --container-bg: theme('colors.solarized-light-container-bg');
+    --container-border: 1px solid theme('colors.solarized-light-container-border');
+    --window-header-bg: theme('colors.solarized-light-window-header-bg');
+    --window-header-text: theme('colors.solarized-light-window-header-text');
+  }
+
+  .theme-cyberpunk {
+    @apply bg-cyberpunk-bg text-cyberpunk-output;
+    --prompt-color: theme('colors.cyberpunk-prompt');
+    --input-color: theme('colors.cyberpunk-input');
+    --header-color: theme('colors.cyberpunk-header');
+    --link-color: theme('colors.cyberpunk-link');
+    --link-hover-color: theme('colors.cyberpunk-link-hover');
+    --shadow-color: theme('colors.cyberpunk-shadow');
+    --container-bg: theme('colors.cyberpunk-container-bg');
+    --container-border: 1px solid theme('colors.cyberpunk-container-border');
+    --window-header-bg: theme('colors.cyberpunk-window-header-bg');
+    --window-header-text: theme('colors.cyberpunk-window-header-text');
+  }
+
+  .theme-retro {
+    @apply bg-retro-bg text-retro-output font-press-start-2p;
+    --prompt-color: theme('colors.retro-prompt');
+    --input-color: theme('colors.retro-input');
+    --header-color: theme('colors.retro-header');
+    --link-color: theme('colors.retro-link');
+    --link-hover-color: theme('colors.retro-link-hover');
+    --shadow-color: theme('colors.retro-shadow');
+    --container-bg: theme('colors.retro-container-bg');
+    --container-border: 1px solid theme('colors.retro-container-border');
+    --window-header-bg: theme('colors.retro-window-header-bg');
+    --window-header-text: theme('colors.retro-window-header-text');
+  }
+
+  .theme-vaporwave {
+    @apply bg-vaporwave-bg text-vaporwave-output;
+    --prompt-color: theme('colors.vaporwave-prompt');
+    --input-color: theme('colors.vaporwave-input');
+    --header-color: theme('colors.vaporwave-header');
+    --link-color: theme('colors.vaporwave-link');
+    --link-hover-color: theme('colors.vaporwave-link-hover');
+    --shadow-color: theme('colors.vaporwave-shadow');
+    --container-bg: theme('colors.vaporwave-container-bg');
+    --container-border: 1px solid theme('colors.vaporwave-container-border');
+    --window-header-bg: theme('colors.vaporwave-window-header-bg');
+    --window-header-text: theme('colors.vaporwave-window-header-text');
+  }
+
+  /* Layout classes */
+  .layout-terminal #output-wrapper,
+  .layout-minimal #output-wrapper {
+    @apply flex flex-col h-full;
+  }
+
+  .layout-centered #output-wrapper {
+    @apply flex flex-col h-full justify-center items-center p-4;
+  }
+
+  .layout-centered #terminal-output {
+    @apply h-[90vh] max-h-[800px] bg-[var(--container-bg)] backdrop-blur-md border-[var(--container-border)] rounded-lg animate-fade;
+  }
+
+  /* General terminal styling */
+  .terminal-line {
+    @apply mb-2 leading-normal;
+  }
+
+  .prompt-text {
+    @apply text-[var(--prompt-color)];
+  }
+
+  .header-text {
+    @apply text-[var(--header-color)] font-bold mb-2;
+  }
+
+  a {
+    @apply no-underline text-[var(--link-color)] hover:text-[var(--link-hover-color)];
+  }
+
+  .cursor {
+    @apply inline-block w-[0.6em] h-[1.2em] bg-[var(--input-color)] animate-blink ml-[0.2em];
+  }
+
+  /* Scrollbar styling */
+  #terminal-output::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+  #terminal-output::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  #terminal-output::-webkit-scrollbar-thumb {
+    @apply bg-[var(--prompt-color)];
   }
 }
